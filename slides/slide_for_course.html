@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>The time complexity of Binary Search</title>
+
+    <meta name="description" content="讲解二分搜索算法时间复杂度的分析">
+    <meta name="author" content="Cloudys">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section>
+                <h2>二分搜索-时间复杂度分析</h2>
+                <h4>The time complexity of Binary Search</h4>
+                <p>
+                    <small>Created by <a href="https://github.com/yeshan333">Cloudys</a> and <a
+                            href="https://github.com/hakimel/reveal.js">reveal.js</a></small>
+                </p>
+            </section>
+
+            <section>
+                <section data-markdown>
+                    <script type="text/template">
+                        <h2 style="text-transform:capitalize;">主题</h2>
+
+                                - 二分搜索算法的思想 <!-- .element: class="fragment" -->
+                                - 算法实现 <!-- .element: class="fragment" -->
+                                - 时间复杂度分析 <!-- .element: class="fragment" -->
+                                  - 最好情况 <!-- .element: class="fragment" -->
+                                  - 最坏情况 <!-- .element: class="fragment" -->
+                                  - 平均时间复杂度 <!-- .element: class="fragment" -->
+                            </script>
+                </section>
+            </section>
+
+            <section>
+                <section data-markdown>
+                    <textarea data-template>
+                            ## 二分搜索的思想
+                        </textarea>
+                </section>
+                <section>
+                    <h2>What is binary search</h2>
+                    <p>binary search, also known as half-interval search,</p>
+                    <p>logarithmic search, is a search algorithm that finds the</p>
+                    <p>position of a target value within a sorted array.</p>
+                    <p align="right">- from <a
+                            href="https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%88%86%E6%90%9C%E5%B0%8B%E6%BC%94%E7%AE%97%E6%B3%95">wikipedia</a>
+                    </p>
+                </section>
+                <section>
+                    <h2>核心(core)</h2>
+                    <p align="left">
+                        查找从<span class="fragment highlight-red">有序序列</span>的中间开始，如果查找的数据在序列的<span
+                            class="fragment highlight-red">中间</span>位置，那么查找终止；否则，依据查找数据与中间位置数据的比较结果，可以<span
+                            class="fragment highlight-red">递归的查找序列的左半部分或右半部分</span>。
+                    </p>
+                </section>
+                <section data-background="https://cdn.jsdelivr.net/gh/ssmath/mypic/img/20200228210128.gif"
+                    data-background-size="contain">
+                </section>
+            </section>
+
+            <!-- Example of nested vertical slides -->
+            <section>
+                <section>
+                    <h2>算法实现</h2>
+                    <a href="#/3/1" class="navigate-down">
+                        <img width="178" height="238"
+                            data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+                    </a>
+                </section>
+                <section>
+                    <h2>伪代码</h2>
+                    <img src="https://cdn.jsdelivr.net/gh/ssmath/mypic/img/20200228213921.png" alt="二分查找伪代码">
+                </section>
+                <section>
+                    <h2>C 实现-递归</h2>
+                    </span>
+                    <img src="https://img.vim-cn.com/75/19cd837105d4715f4747561c92abb1a1911b63.png" alt="C 递归">
+                    </span>
+                </section>
+                <section>
+                    <a href="#/3">
+                        <img width="178" height="238"
+                            data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow"
+                            style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
+                    </a>
+                </section>
+            </section>
+
+            <section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## 时间复杂度分析
+                        ### (Time complexity analysis)
+                    </script>
+                </section>
+                <section>
+                    每次对比都将下一步的比对范围缩小一半<br/>
+                    每次比对后剩余数据项如下表:
+                    <img src="https://img.vim-cn.com/ea/4e858038b377ee0c3ff1d6539001791b4a7644.jpg">
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                            <h2>最好情况</h2>
+                            <h3>(Best case)</h3>
+                            即要找的元素正好在初始查找序列的中间<br>
+                            一次比较出结果，时间复杂度为 $ O(1) $
+                        </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                            <h2>最坏情况</h2>
+                            <h3>(Worst case)</h3>
+                            即比对范围只剩下 1 个数据项的情况<br>
+                            这个数据项即为正要找的元素<br>
+                            解方程
+                            $$ \frac{n}{2^i}=1 $$
+                            即得时间复杂度为 $ O(log(n)) $
+                        </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        <h2>平均时间复杂度</h2>
+                        <h3>(average)</h3>
+                        <p>进行平均时间复杂度分析时需要讨论：随着元素个数n的增多，需要几步算法才能终止？查找成功有多少种情况？查找失败有多少种情况？</p>
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        $$ 设 n=2^k-1,k为比较次数。$$
+                        $$ 易知，对于t=1,2,..., \lfloor log(n) \rfloor + 1， $$
+                        $$ 会有2^{t-1}个元素在t步之后使算法成功终止。 $$
+                        $$ 总共有(2n+1)种情况，n种情况为成功结束，$$
+                        $$ (n+1)种情况为失败终止。 $$
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        $$ 由此可得二分搜索的平均比较次数为(k = \lfloor log(n) \rfloor + 1) $$
+                        $$ A(n)= \frac{1}{2n+1}(\sum_{i=1}^{k}i2^{i-1} + k(n+1)) $$
+                        $$ 根据初等数学等差乘等比数列求和的错位相减法/裂项相消法 $$
+                        $$ 易知, \sum_{i=1}^{k}i2^{i-1} = 2^k(k-1)+1 $$
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        <h2>裂项相消法</h2>
+                        $$ 由 \sum_{i=1}^{k}i2^{i-1}，设 a_i=i2^{i-1},(i=1,...,k) $$
+                        $$ 注意到，a_i=(k-1)2^k-(k-2)2^{k-1} $$
+                        $$ \sum_{i=1}^{k}i2^{i-1}=0\times2^1+1+1\times2^2-0\times2^1+2\times2^3-1\times2^2 $$
+                        $$ +...+(k-1)2^k-(k-2)2^{k-1}=2^k(k-1)+1(即得) $$
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        $$ A(n)= \frac{1}{2n+1}(\sum_{i=1}^{k}i2^{i-1} + k(n+1)) $$
+                        $$ \sum_{i=1}^{k}i2^{i-1} = 2^k(k-1)+1 $$
+                        $$ 综上可得，A(n) = \frac{1}{2n+1}((k-1)2^{k}+1+k2^k) $$
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        $$ 当n非常大时，可得，$$
+                        $$ A(n) \approx \frac{1}{2^{k+1}}((k-1)2^{k}+k2^k)=\frac{(k-1)}{2}+\frac{k}{2}=k-\frac{1}{2} $$
+                        $$ 所以A(n)<k=O(log(n))，平均时间复杂度为O(log(n)) $$
+                    </script>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="js/reveal.js"></script>
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            center: true,
+            hash: true,
+
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [{
+                    src: 'plugin/markdown/marked.js',
+                    condition: function () {
+                        return !!document.querySelector('[data-markdown]');
+                    }
+                },
+                {
+                    src: 'plugin/markdown/markdown.js',
+                    condition: function () {
+                        return !!document.querySelector('[data-markdown]');
+                    }
+                },
+                {
+                    src: 'plugin/highlight/highlight.js',
+                    async: true
+                },
+                {
+                    src: 'plugin/search/search.js',
+                    async: true
+                },
+                {
+                    src: 'plugin/zoom-js/zoom.js',
+                    async: true
+                },
+                {
+                    src: 'plugin/notes/notes.js',
+                    async: true
+                },
+                // MathJax
+                {
+                    src: 'plugin/math/math.js',
+                    async: true
+                }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

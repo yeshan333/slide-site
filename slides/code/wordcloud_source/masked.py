@@ -6,6 +6,7 @@ Masked wordcloud
 ================
 
 Using a mask you can generate wordclouds in arbitrary shapes.
+用于生成 花里胡哨词云图 after_mark.png
 """
 
 from os import path
