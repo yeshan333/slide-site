@@ -1,0 +1,32 @@
+name: site release
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # from: https://github.com/actions/checkout
+      - name: Checkout Repository main branch
+        uses: actions/checkout@main
+
+      - name: change files mod
+        run: |
+          chmod 755 -R .
+
+      # from https://github.com/yeshan333/rsync-deploy-action
+      # push to tencent cloud cvm
+      - name: Push blog to tencentyun CVM
+        uses: yeshan333/rsync-deploy-action@v1.0.0
+        with:
+          ssh_login_username: ${{ secrets.SSH_LOGIN_USERNAME }}
+          remote_server_ip: ${{ secrets.REMOTE_SERVER_IP }}
+          ssh_port: ${{ secrets.SSH_PORT }}
+          ssh_private_key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+          source_path: ./*
+          destination_path: ~/slide.shan333.cn
